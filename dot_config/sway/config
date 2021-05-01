@@ -1,0 +1,160 @@
+### Global
+set $term alacritty
+set $mod Mod4
+set $menu dmenu_path | wofi --show "drun,run" -i | xargs swaymsg exec
+set $lock swaylock
+set $ws_web number 1
+set $ws_term number 2
+set $ws_text number 3
+set $ws_chat number 4
+set $ws_media number 5
+
+### Workspace
+
+set $laptop eDP-1
+
+output $laptop scale 1.1 bg ~/Pictures/simple_landscape_illustration-wallpaper-1920x1440.jpg fill
+output DP-1 scale 1.0 bg ~/Pictures/low_poly_wild_west-wallpaper-1920x1440.jpg fill
+
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
+
+### End Workspace
+
+### Inputs: keyboard, touchpad,...
+
+input type:keyboard {
+    xkb_layout  "us"
+}
+
+input 1:1:AT_Translated_Set_2_keyboard {
+    xkb_options "altwin:swap_lalt_lwin,ctrl:nocaps"
+}
+
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+}
+
+input type:pointer {
+    natural_scroll enabled
+}
+
+### End Inputs
+
+### Status Bar
+
+bar {
+    position top
+    swaybar_command waybar
+}
+
+### End Status Bar
+
+### Theme
+
+gaps inner 5
+default_border pixel 2
+
+###
+
+### Key bindings
+
+bindsym $mod+Return exec $term
+bindsym $mod+q kill
+bindsym $mod+Shift+r reload
+bindsym $mod+Shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+p exec $menu
+
+bindsym $mod+s split toggle
+bindsym $mod+Ctrl+q exec $lock
+
+bindsym $mod+c exec wl-copy # copy selected text to clipboard
+bindsym $mod+v exec wl-paste # insert clipboard contents at cursor
+
+# Moving around:
+# Move your focus around use $mod+[up|down|left|right]
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# _move_ the focused window with the same, but add Shift with arrow keys
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+Control+l move workspace to output right
+bindsym $mod+Control+h move workspace to output left
+bindsym $mod+Control+j move workspace to output down
+bindsym $mod+Control+k move workspace to output up
+
+bindsym $mod+Control+Left move workspace to output left
+bindsym $mod+Control+Right move workspace to output right
+bindsym $mod+Control+Down move workspace to output down
+bindsym $mod+Control+Up move workspace to output up
+
+# Workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+
+bindsym $mod+tab workspace back_and_forth
+
+bindsym $mod+f fullscreen
+
+# Function keys
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86MonBrightnessDown exec brightnessctl -q set 5%-
+bindsym XF86MonBrightnessUp exec brightnessctl -q set +5%
+
+### End Key bindings
+
+### Windows Management
+
+assign [app_id="firefox"] workspace $ws_web
+
+assign [app_id="goneovim"] workspace $ws_text
+
+assign [app_id="Alacritty"] workspace $ws_term
+assign [app_id="kitty"] workspace $ws_term
+
+assign [app_id="telegramdesktop"] workspace $ws_chat
+assign [app_id="telegram-desktop_telegram-desktop"] workspace $ws_chat
+
+### End Windows Management
+
+### Start up processes
+
+exec mako
+exec swayidle -w \
+    timeout 300 'swaylock' \
+    timeout 600 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"'
+# exec ibus-daemon -dxr

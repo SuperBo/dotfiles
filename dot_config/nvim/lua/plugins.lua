@@ -6,6 +6,7 @@ return require('packer').startup(function()
   use 'justinmk/vim-dirvish'
   use 'b3nj5m1n/kommentary'
   use 'tpope/vim-fugitive'
+  use 'tpope/vim-sleuth'
   --[[
   use {
     'junegunn/fzf.vim',
@@ -14,6 +15,7 @@ return require('packer').startup(function()
   --]]
   use 'tpope/vim-eunuch'
   use 'machakann/vim-sandwich'
+  use 'jeetsukumaran/vim-buffergator'
   use {
     'easymotion/vim-easymotion',
     config = function() require 'config.easymotion' end
@@ -34,4 +36,8 @@ return require('packer').startup(function()
   use 'camspiers/lens.vim'
   -- Theme
   use 'drewtempelmeyer/palenight.vim'
+  use 'owozsh/amora'
+  use 'larsbs/vimterial_dark'
+  use 'sainnhe/everforest'
+  use 'arcticicestudio/nord-vim'
 end)

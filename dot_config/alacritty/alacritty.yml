@@ -1,9 +1,9 @@
 import:
-  - ~/.config/alacritty/one_dark.yml
+  - ~/.config/alacritty/base16-material-palenight-256.yml
 
 window:
   padding:
-    x: 5
+    x: 4
     y: 4
 
 font:
@@ -23,3 +23,5 @@ font:
     style: BoldItalic
 
   # use_thin_strokes: false 
+
+background_opacity: 0.85

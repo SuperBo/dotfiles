@@ -13,8 +13,11 @@ set $ws_media number 5
 
 set $laptop eDP-1
 
-output $laptop scale 1.1 bg ~/Pictures/simple_landscape_illustration-wallpaper-1920x1440.jpg fill
-output DP-1 scale 1.0 bg ~/Pictures/low_poly_wild_west-wallpaper-1920x1440.jpg fill
+output DP-1 pos 0 0
+output $laptop scale 1.20 pos 1920 0
+
+output $laptop bg ~/Pictures/wallpaper-1.jpg fill
+output DP-1 bg ~/Pictures/low_poly_wild_west-wallpaper-1920x1440.jpg fill
 
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
@@ -25,6 +28,8 @@ bindswitch --reload --locked lid:off output $laptop enable
 
 input type:keyboard {
     xkb_layout  "us"
+    repeat_delay 300
+    repeat_rate 30
 }
 
 input 1:1:AT_Translated_Set_2_keyboard {
@@ -53,8 +58,22 @@ bar {
 
 ### Theme
 
-gaps inner 5
+gaps inner 4
+gaps outer 2
 default_border pixel 2
+
+# Set colors
+set $bg #3b4252
+set $fg #eceff4
+set $br #bf616a
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #88c0d0     #88c0d0    $fg     #88c0d0  $bg
+client.focused_inactive $bg     $bg     $fg     $bg       $bg
+client.unfocused        $bg     $bg     $fg     $bg       $bg
+#client.urgent          $br     $br     $fg     $bg       $br #currently not implemented
+#client.placeholder     $br     $br     $fg     $bg       $br #currently not implemented
+client.background $bg
 
 ###
 
@@ -134,13 +153,20 @@ bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym XF86MonBrightnessDown exec brightnessctl -q set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl -q set +5%
 
+# Ibus
+bindsym $mod+space exec ~/.local/bin/ibus-toggle.sh
+
 ### End Key bindings
 
 ### Windows Management
 
 assign [app_id="firefox"] workspace $ws_web
+assign [app_id="Chromium"] workspace $ws_web
 
 assign [app_id="goneovim"] workspace $ws_text
+assign [class="neovide"] workspace $ws_text
+assign [app_id="neovide"] workspace $ws_text
+assign [app_id="glrnvim"] workspace $ws_text
 
 assign [app_id="Alacritty"] workspace $ws_term
 assign [app_id="kitty"] workspace $ws_term
@@ -156,5 +182,7 @@ exec mako
 exec swayidle -w \
     timeout 300 'swaylock' \
     timeout 600 'swaymsg "output * dpms off"' \
-    resume 'swaymsg "output * dpms on"'
+    resume 'swaymsg "output * dpms on"' \
+    before-sleep 'pgrep swaylock || swaylock'
 # exec ibus-daemon -dxr
+exec env XDG_CURRENT_DESKTOP=KDE ibus-daemon -drx

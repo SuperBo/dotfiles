@@ -17,6 +17,7 @@ vim.g.startify_lists = {
 }
 
 -- UI
+vim.o.termguicolors = true
 vim.o.number = true
 vim.o.laststatus = 2
 vim.api.nvim_set_var('lens#animate', 0)
@@ -26,5 +27,9 @@ vim.cmd 'autocmd VimResized * wincmd ='
 vim.g.palenight_color_overrides = {
   black = { gui = '#292D3E', cterm = '0', cterm16 = '0' }
 }
-vim.cmd 'colorscheme palenight'
-vim.g.lightline = { colorscheme = 'palenight' }
+vim.cmd 'colorscheme nord'
+vim.g.lightline = { colorscheme = 'nord' }
+
+-- GUI
+vim.api.nvim_set_option('guifont', 'FiraMono Nerd Font:h10')
+vim.g.neovide_cursor_vfx_mode = "sonicboom"

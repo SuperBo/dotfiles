@@ -20,7 +20,5 @@ vim.api.nvim_set_keymap('i', '<S-Tab>', 'v:lua.smart_stab()', {expr = true, nore
 vim.cmd [[inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"]]
 vim.cmd [[inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"]]
 
-vim.o.completeopt = 'menuone,noinsert,noselect'
-vim.o.shortmess = vim.o.shortmess .. 'c'
-
-lspconf.pyright.setup{on_attach=require'completion'.on_attach}
+vim.o.completeopt = "menuone,noselect"
+-- vim.o.shortmess = vim.o.shortmess .. 'c'

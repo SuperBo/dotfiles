@@ -45,6 +45,10 @@ window#waybar {
     min-height: 20px;
 }
 
+#workspaces button:hover {
+    color: #4c566a;
+}
+
 #workspaces button.focused {
     background-color: #a3be8c;
     color: #434c5e;

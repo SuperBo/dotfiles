@@ -27,9 +27,9 @@ vim.cmd 'autocmd VimResized * wincmd ='
 vim.g.palenight_color_overrides = {
   black = { gui = '#292D3E', cterm = '0', cterm16 = '0' }
 }
-vim.cmd 'colorscheme nord'
-vim.g.lightline = { colorscheme = 'nord' }
+vim.cmd 'colorscheme palenight'
+vim.g.lightline = { colorscheme = 'palenight' }
 
 -- GUI
-vim.api.nvim_set_option('guifont', 'FiraMono Nerd Font:h10')
+vim.api.nvim_set_option('guifont', 'FiraMono Nerd Font:h13')
 vim.g.neovide_cursor_vfx_mode = "sonicboom"

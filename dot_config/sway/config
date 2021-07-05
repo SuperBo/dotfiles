@@ -154,7 +154,7 @@ bindsym XF86MonBrightnessDown exec brightnessctl -q set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl -q set +5%
 
 # Ibus
-bindsym $mod+space exec ~/.local/bin/ibus-toggle.sh
+# bindsym $mod+space exec ~/.local/bin/ibus-toggle.sh
 
 ### End Key bindings
 
@@ -185,4 +185,5 @@ exec swayidle -w \
     resume 'swaymsg "output * dpms on"' \
     before-sleep 'pgrep swaylock || swaylock'
 # exec ibus-daemon -dxr
-exec env XDG_CURRENT_DESKTOP=KDE ibus-daemon -drx
+exec fcitx5 -d -r
+# exec env XDG_CURRENT_DESKTOP=KDE ibus-daemon -drx

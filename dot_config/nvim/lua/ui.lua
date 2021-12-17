@@ -8,6 +8,7 @@ local ascii_header = {
   '  ██   ████ ███████  ██████    ████   ██ ██      ██',
   ''
 }
+
 vim.g.startify_custom_header = ascii_header
 vim.g.startify_files_number = 5
 vim.g.startify_session_persistence = 1

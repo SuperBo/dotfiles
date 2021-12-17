@@ -3,13 +3,13 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function()
   use {'wbthomason/packer.nvim', opt = true}
 
-  use 'justinmk/vim-dirvish' -- browse file
+  -- use 'justinmk/vim-dirvish' -- browse file
   use 'b3nj5m1n/kommentary' -- comment utils
   use 'tpope/vim-fugitive' -- Git utils
   use 'tpope/vim-eunuch' --  Unix utils
   use 'machakann/vim-sandwich' -- parentheis utils
   use 'Raimondi/delimitMate' -- auto close parentheis
-  use 'jeetsukumaran/vim-buffergator' -- browse buffer
+  -- use 'jeetsukumaran/vim-buffergator' -- browse buffer
   use {
     'easymotion/vim-easymotion',
     config = function() require 'config.easymotion' end
@@ -20,14 +20,15 @@ return require('packer').startup(function()
     config = function() require 'config.telescope' end
   }
 
-  -- LSP
+  -- LSP & Completer
   use 'neovim/nvim-lspconfig'
   use {
-    'hrsh7th/nvim-compe',
-    config = function() require 'config.compe' end
+    'ms-jpq/coq_nvim',
+    branch = 'coq',
+    requires = {'ms-jpq/coq.artifacts', branch = 'artifacts'}
   }
 
-  -- Treesitter
+  -- Tree-sitter 
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -35,7 +36,20 @@ return require('packer').startup(function()
   }
 
   -- UI
-  use 'itchyny/lightline.vim'
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = {'kyazdani42/nvim-web-devicons', opt = true}
+  }
+  use {
+    'akinsho/bufferline.nvim',
+    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    config = function() require 'config.bufferline' end
+  }
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    config = function() require 'config.nvimtree' end
+  }
   use 'mhinz/vim-startify'
   use 'camspiers/lens.vim'
 
@@ -45,4 +59,5 @@ return require('packer').startup(function()
   use 'larsbs/vimterial_dark'
   use 'sainnhe/everforest'
   use 'arcticicestudio/nord-vim'
+  use 'sainnhe/sonokai'
 end)

@@ -22,6 +22,6 @@ font:
   bold_italic:
     style: BoldItalic
 
-  # use_thin_strokes: false 
+  # use_thin_strokes: false
 
-background_opacity: 0.85
+# background_opacity: 0.85

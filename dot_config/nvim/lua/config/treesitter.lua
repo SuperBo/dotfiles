@@ -1,11 +1,13 @@
-require'nvim-treesitter.configs'.setup {
+require 'nvim-treesitter.configs'.setup {
   ensure_installed = {
-    "java", "javascript", "json", "python", "yaml"
+    'go', 'java', 'javascript', 'json', 'python', 'rust', 'svelte', 'typescript', 'yaml'
   },
   indent = {
-    enable = true
+    enable = true,
+    disable = { 'python' }
   },
   highlight = {
-    enable = true
+    enable = true,
+    additional_vim_regex_highlighting = false,
   }
 }

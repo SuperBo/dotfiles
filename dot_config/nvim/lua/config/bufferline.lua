@@ -1,5 +1,6 @@
 require 'bufferline'.setup{
   options = {
+    separator_style = "thick",
     offsets = {
       {
         filetype = "NvimTree",
@@ -11,5 +12,5 @@ require 'bufferline'.setup{
   }
 }
 
-vim.api.nvim_set_keymap('n', '<C-[>', '<CMD>BufferLineCyclePrev<CR>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<C-]>', '<CMD>BufferLineCycleNext<CR>', {noremap = true})
+vim.keymap.set('n', '<C-[>', '<CMD>BufferLineCyclePrev<CR>', {noremap = true})
+vim.keymap.set('n', '<C-]>', '<CMD>BufferLineCycleNext<CR>', {noremap = true})

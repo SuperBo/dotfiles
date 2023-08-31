@@ -1,2 +1,2 @@
-vim.api.nvim_set_keymap('n', '<Leader>s', '<Plug>(easymotion-overwin-f2)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<Leader>f', '<Plug>(easymotion-overwin-f)', { noremap = false })
+vim.keymap.set('n', '<Leader>s', '<Plug>(easymotion-overwin-f2)', { noremap = true })
+vim.keymap.set('n', '<Leader>f', '<Plug>(easymotion-overwin-f)', { noremap = true })

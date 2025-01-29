@@ -1,0 +1,18 @@
+lastupdatecheck: 0
+recentrepos:
+    - /Users/ynguyen/Workspace/k8s-gitops-deployment
+    - /Users/ynguyen/Workspace/fugit2.nvim
+startuppopupversion: 5
+lastversion: 0.42.0
+customcommandshistory:
+    - 'fix: fix ascore v3 feature service'
+    - q!
+    - q
+    - qa
+hidecommandlog: false
+ignorewhitespaceindiffview: false
+diffcontextsize: 3
+localbranchsortorder: recency
+remotebranchsortorder: alphabetical
+gitlogorder: topo-order
+gitlogshowgraph: always

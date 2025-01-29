@@ -20,6 +20,16 @@
 -- UI
 -- vim.o.termguicolors = true
 vim.o.number = true
+vim.o.splitright = true
+-- vim.o.diffopt = "vertical"
+
+-- vim.opt.listchars = {
+--   tab = "⇥ ",
+--   leadmultispace = "¦ ",
+--   trail = "␣",
+--   nbsp = "⍽",
+-- }
+-- vim.opt.list = true
 
 -- Theme config
 vim.g.palenight_color_overrides = {
@@ -27,7 +37,8 @@ vim.g.palenight_color_overrides = {
 }
 
 -- vim.o.background = 'light'
-vim.cmd.colorscheme 'nordfox'
+vim.cmd.colorscheme 'duskfox'
+-- vim.cmd.colorscheme 'kanagawa-wave'
 
 -- Neovide
 if vim.g.neovide then

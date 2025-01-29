@@ -1,0 +1,10 @@
+{
+    "workspace.library": [
+        "/Users/superbo/.local/share/nvim/lazy/neodev.nvim/types/stable",
+        "/opt/homebrew/Cellar/neovim/0.9.4/share/nvim/runtime/lua",
+        "/Users/superbo/.local/share/nvim/lazy/plenary.nvim/lua",
+        "/Users/superbo/.local/share/nvim/lazy/nui.nvim/lua",
+        "/Users/superbo/.config/nvim/lua",
+        "${3rd}/luv/library"
+    ]
+}

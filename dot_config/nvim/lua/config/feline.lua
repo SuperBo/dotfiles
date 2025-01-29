@@ -201,7 +201,7 @@ local active_right = {
 }
 
 local inactive_left = {
-  { 
+  {
     provider = {
       name = 'file_info',
       opts = {

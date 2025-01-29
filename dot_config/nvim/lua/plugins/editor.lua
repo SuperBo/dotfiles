@@ -1,7 +1,4 @@
 return {
-  -- {
-  --   'tpope/vim-fugitive', cmd = { 'G', 'Git' }
-  -- },
   {
     'tpope/vim-eunuch',
     cmd = {
@@ -13,6 +10,36 @@ return {
     version = false,
     config = function() require 'config.mini' end
   },
+  {
+    'altermo/ultimate-autopair.nvim',
+    event={ 'InsertEnter','CmdlineEnter' },
+    branch='v0.6', --recomended as each new version will have breaking changes
+    opts={},
+  },
+  {
+    'andymass/vim-matchup',
+    config = function()
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+    end,
+  },
+  -- {
+  --   'cohama/lexima.vim',
+  --   event = 'InsertEnter',
+  -- },
+  -- {
+  --   'abecodes/tabout.nvim',
+  --   dependencies = {
+  --     'nvim-treesitter/nvim-treesitter',
+  --     'L3MON4D3/LuaSnip',
+  --     'hrsh7th/nvim-cmp',
+  --   },
+  --   -- event = 'VeryLazy',
+  --   keys = { '<Tab>' },
+  --   opts = {
+  --     tabkey = '<Tab>',
+  --     backwards_tabkey = '<S-Tab>',
+  --   }
+  -- },
   -- {
   --   'ggandor/leap.nvim',
   --   keys = {
@@ -27,7 +54,7 @@ return {
     opts = {},
     keys = {
       {
-        's',
+        '<leader>f',
         mode = { 'n', 'o', 'x' },
         function() require 'flash'.jump() end,
         desc = 'Flash'
@@ -61,36 +88,41 @@ return {
   {
     'sQVe/sort.nvim', cmd = 'Sort'
   },
-  -- {
-  --   'nvim-telescope/telescope.nvim',
-  --   branch = '0.1.x',
-  --   dependencies = {
-  --     { 'nvim-lua/plenary.nvim' },
-  --     {
-  --       'nvim-telescope/telescope-fzf-native.nvim',
-  --       build = [[
-  --         cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release &&\\
-  --         cmake --build build --config Release &&\\
-  --         cmake --install build --prefix build
-  --       ]]
-  --     }
-  --   },
-  --   keys = { '<C-p>', '<C-b>' },
-  --   config = function() require 'config.telescope' end,
-  -- },
   {
-    'ibhagwan/fzf-lua',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    opts = { 'default' },
-    keys = {
-      { '<c-p>',      mode = 'n', function() require 'fzf-lua'.files() end },
-      { '<leader>ff', mode = 'n', function() require 'fzf-lua'.files() end },
-      { '<c-b>',      mode = 'n', function() require 'fzf-lua'.buffers() end },
-      { '<leader>fb', mode = 'n', function() require 'fzf-lua'.buffers() end },
-      { '<leader>fg', mode = 'n', function() require 'fzf-lua'.grep() end },
-      { '<leader>fm', mode = 'n', function() require 'fzf-lua'.marks() end },
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    dependencies = {
+      {
+        'nvim-lua/plenary.nvim'
+      },
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'make'
+      },
+      {
+        'nvim-telescope/telescope-file-browser.nvim'
+      },
+      {
+        'nvim-telescope/telescope-frecency.nvim'
+      },
     },
+    keys = { '<c-p>', '<c-b>', '<leader>gr' },
+    cmd = { 'Telescope' },
+    config = function() require 'config.telescope' end,
   },
+  -- {
+  --   url = 'https://gitlab.com/ibhagwan/fzf-lua',
+  --   dependencies = { 'nvim-tree/nvim-web-devicons' },
+  --   opts = { 'default' },
+  --   keys = {
+  --     { '<c-p>',      mode = 'n', function() require 'fzf-lua'.files() end },
+  --     { '<leader>ff', mode = 'n', function() require 'fzf-lua'.files() end },
+  --     { '<c-b>',      mode = 'n', function() require 'fzf-lua'.buffers() end },
+  --     { '<leader>fb', mode = 'n', function() require 'fzf-lua'.buffers() end },
+  --     { '<leader>fg', mode = 'n', function() require 'fzf-lua'.grep() end },
+  --     { '<leader>fm', mode = 'n', function() require 'fzf-lua'.marks() end },
+  --   },
+  -- },
   {
     'akinsho/toggleterm.nvim',
     version = '*',

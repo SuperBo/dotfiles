@@ -3,73 +3,46 @@ local action = wezterm.action
 
 function Scheme_for_appearance(appearance)
   if appearance:find 'Dark' then
-    return 'nordfox'
+    return 'Catppuccin Frappe'
   else
-    return 'nordfox'
+    return 'Catppuccin Frappe'
   end
 end
 
 return {
   front_end = 'WebGpu',
   default_cursor_style = 'BlinkingBar',
+  cursor_blink_rate = 500,
 
   font = wezterm.font {
-    family = 'Fira Code',
+    -- family = 'Fira Code',
+    -- harfbuzz_features = {'zero'}
     -- family  = 'Iosevka',
     -- stretch = 'Expanded',
     -- weight  = 'Regular',
-    harfbuzz_features = {'zero'}
+    family = 'JetBrains Mono',
+    harfbuzz_features = { 'zero' },
   },
-  font_rules = {
-    {
-      italic = true,
-      intensity = 'Normal',
-      font = wezterm.font {
-        family = 'Cascadia Code',
-        weight = 'Light',
-        style  = 'Italic',
-        harfbuzz_features = {'ss01'},
-      },
-    },
-    {
-      italic = true,
-      intensity = 'Half',
-      font = wezterm.font {
-        family = 'Cascadia Code',
-        weight = 'DemiBold',
-        style  = 'Italic',
-        harfbuzz_features = {'ss01'},
-      },
-    },
-    {
-      intensity = 'Bold',
-      italic = true,
-      font = wezterm.font {
-        family = 'Cascadia Code',
-        weight = 'Bold',
-        style  = 'Italic',
-        harfbuzz_features = {'ss01'},
-      },
-    },
-    {
-      intensity = 'Bold',
-      italic = false,
-      font = wezterm.font {
-        family = 'Fira Code',
-        weight = 'DemiBold',
-        harfbuzz_features = {'zero'}
-      },
-    },
-    {
-      intensity = 'Half',
-      italic = false,
-      font = wezterm.font {
-        family = 'Fira Code',
-        weight = 'Medium',
-        harfbuzz_features = {'zero'}
-      },
-    },
-  },
+  -- font_rules = {
+  --   {
+  --     intensity = 'Bold',
+  --     italic = false,
+  --     font = wezterm.font {
+  --       family = 'Cascadia Code',
+  --       weight = 'DemiBold',
+  --       harfbuzz_features = {'ss19'}
+  --     },
+  --   },
+  --   {
+  --     intensity = 'Half',
+  --     italic = false,
+  --     font = wezterm.font {
+  --       family = 'Cascadia Code',
+  --       weight = 'Medium',
+  --       harfbuzz_features = {'ss19'}
+  --     },
+  --   },
+  -- },
 
   font_size = 12,
   freetype_load_target = 'Light',
@@ -94,7 +67,7 @@ return {
 
   -- Keys
   use_ime = false,
-  leader = { key = ',', mods = 'CTRL', timeout_milliseconds = 500 },
+  leader = { key = ';', mods = 'CTRL', timeout_milliseconds = 500 },
   keys = {
     {
       key = '\\', mods = 'LEADER',

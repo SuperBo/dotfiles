@@ -1,0 +1,100 @@
+k9s:
+  liveViewAutoRefresh: false
+  refreshRate: 2
+  maxConnRetry: 5
+  enableMouse: false
+  headless: false
+  logoless: false
+  crumbsless: false
+  readOnly: false
+  noExitOnCtrlC: false
+  noIcons: false
+  skipLatestRevCheck: false
+  logger:
+    tail: 100
+    buffer: 5000
+    sinceSeconds: 300
+    fullScreenLogs: false
+    textWrap: false
+    showTime: false
+  currentContext: arn:aws:eks:ap-southeast-1:799043958023:cluster/ds-dev-cluster
+  currentCluster: arn:aws:eks:ap-southeast-1:799043958023:cluster/ds-dev-cluster
+  clusters:
+    arn:aws:eks:ap-southeast-1:799043958023:cluster/ds-dev-cluster:
+      namespace:
+        active: all
+        lockFavorites: false
+        favorites:
+        - memgraph
+        - arangodb
+        - apisix-system
+        - all
+        - kube-system
+        - karpenter-system
+        - gitlab
+        - kube-public
+      view:
+        active: node
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+        labels: {}
+      portForwardAddress: localhost
+    arn:aws:eks:ap-southeast-1:877961948410:cluster/ds-prod-cluster:
+      namespace:
+        active: flux-system
+        lockFavorites: false
+        favorites:
+        - flux-system
+        - default
+      view:
+        active: pods
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+        labels: {}
+      portForwardAddress: localhost
+    colima:
+      namespace:
+        active: graphscope
+        lockFavorites: false
+        favorites:
+        - graphscope
+        - all
+        - default
+      view:
+        active: pods
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+        labels: {}
+      portForwardAddress: localhost
+  thresholds:
+    cpu:
+      critical: 90
+      warn: 70
+    memory:
+      critical: 90
+      warn: 70
+  screenDumpDir: /var/folders/d6/z852pyvd5ln27gnmnm3fp0780000gn/T/k9s-screens-superbo

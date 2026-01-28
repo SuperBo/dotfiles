@@ -71,11 +71,14 @@ return {
   },
   -- Fugit2
   {
-    dir = '/Users/ynguyen/Workspace/fugit2.nvim',
+    -- 'SuperBo/fugit2.nvim',
+    dir = '~/Workspace/fugit2.nvim',
+    build = false,
     opts = {
       -- width = 100,
       -- colorscheme = "cyberdream",
       show_patch = false,
+      -- command_timeout = 3000,
     },
     dependencies = {
       'MunifTanjim/nui.nvim',

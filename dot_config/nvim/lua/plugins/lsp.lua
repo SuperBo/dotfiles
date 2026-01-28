@@ -35,8 +35,7 @@ return {
     end,
     opts = {
       filetype_exclude = {
-        'help', 'alpha', 'dashboard', 'neo-tree', 'Trouble', 'lazy', 'mason',
-        'diff'
+        'help', 'alpha', 'dashboard', 'neo-tree', 'Trouble', 'lazy', 'mason', 'diff'
       },
     },
     keys = {
@@ -44,121 +43,61 @@ return {
       { 'zM', mode = 'n', function () require 'ufo'.closeAllFolds() end },
     },
   },
-  {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v3.x',
-    lazy = true,
-    config = false,
-    init = function()
-      -- Disable automatic setup, we are doing it manually
-      vim.g.lsp_zero_extend_cmp = 0
-      vim.g.lsp_zero_extend_lspconfig = 0
-      vim.g.lsp_zero_ui_float_border = 0
-    end,
-  },
-  {
-    'williamboman/mason.nvim',
-    lazy = false,
-    config = true,
-  },
-  {
-    'hrsh7th/nvim-cmp',
-    event = 'InsertEnter',
-    dependencies = {
-      'L3MON4D3/LuaSnip',
-      'onsails/lspkind.nvim'
-    },
-    config = function()
-      local lsp_zero = require 'lsp-zero'
-      lsp_zero.extend_cmp()
-
-      local cmp = require 'cmp'
-      local cmp_action = lsp_zero.cmp_action()
-
-      cmp.setup {
-        -- formatting = lsp_zero.cmp_format(),
-        formatting = {
-          fields = {'abbr', 'kind', 'menu'},
-          format = require 'lspkind'.cmp_format({
-            mode = 'symbol_text',
-            preset = 'default',
-            maxwidth = 50,
-            ellipsis_char = '...',
-          })
-        },
-        mapping = {
-          ['<CR>'] = cmp.mapping.confirm({select = false}),
-          ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-          ['<C-b>'] = cmp_action.luasnip_jump_backward(),
-        }
-      }
-    end,
-  },
+  -- {
+  --   'williamboman/mason.nvim',
+  --   lazy = true,
+  --   config = true,
+  -- },
+  -- {
+  --   'hrsh7th/nvim-cmp',
+  --   event = 'InsertEnter',
+  --   dependencies = {
+  --     'L3MON4D3/LuaSnip',
+  --     'onsails/lspkind.nvim'
+  --   },
+  --   config = function()
+  --     local lsp_zero = require 'lsp-zero'
+  --     lsp_zero.extend_cmp()
+  --
+  --     local cmp = require 'cmp'
+  --     local cmp_action = lsp_zero.cmp_action()
+  --
+  --     cmp.setup {
+  --       -- formatting = lsp_zero.cmp_format(),
+  --       formatting = {
+  --         fields = {'abbr', 'kind', 'menu'},
+  --         format = require 'lspkind'.cmp_format({
+  --           mode = 'symbol_text',
+  --           preset = 'default',
+  --           maxwidth = 50,
+  --           ellipsis_char = '...',
+  --         })
+  --       },
+  --       mapping = {
+  --         ['<CR>'] = cmp.mapping.confirm({select = false}),
+  --         ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+  --         ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+  --       }
+  --     }
+  --   end,
+  -- },
   {
     'neovim/nvim-lspconfig',
     cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
-      'hrsh7th/cmp-nvim-lsp',
-      'williamboman/mason-lspconfig.nvim',
+      { "mason-org/mason-lspconfig.nvim" },
+      { "mason-org/mason.nvim", opts = {} },
     },
     config = function()
-      local lsp_zero = require 'lsp-zero'
-      lsp_zero.extend_lspconfig()
-
-      lsp_zero.on_attach(function(client, bufnr)
-        -- see :help lsp-zero-keybindings
-        lsp_zero.default_keymaps({buffer = bufnr})
-      end)
-
-      lsp_zero.set_server_config({
-        capabilities = {
-          textDocument = {
-            foldingRange = {
-              dynamicRegistration = false,
-              lineFoldingOnly = true
-            }
-          }
-        }
-      })
-
-      require 'mason-lspconfig'.setup({
+      require 'mason-lspconfig'.setup {
         ensure_installed = {
           'lua_ls', 'rust_analyzer',
           'terraformls', 'tflint',
           'ruff', 'pyright'
         },
-        handlers = {
-          lsp_zero.default_setup,
-          -- lua_ls = function()
-          --   -- (Optional) Configure lua language server for neovim
-          --   local lua_opts = lsp_zero.nvim_lua_ls()
-          --   require('lspconfig').lua_ls.setup(lua_opts)
-          -- end,
-          lua_ls = function()
-            require 'neodev'.setup({
-              library = {
-                enabled = true,
-                plugins = { "nvim-treesitter", "plenary.nvim", "nui.nvim" },
-              },
-            })
-
-            require 'lspconfig'.lua_ls.setup({
-              settings = {
-                Lua = {
-                  completion = {
-                    callSnippet = "Replace"
-                  }
-                }
-              }
-            })
-          end,
-        }
-      })
+      }
     end,
-  },
-  {
-    'folke/neodev.nvim', opts = {},
   },
   -- {
   --   dir = '/Users/ynguyen/Workspace/lsp-ai.nvim',
@@ -200,4 +139,41 @@ return {
   --   },
   --   dependencies = { 'neovim/nvim-lspconfig' },
   -- }
+  {
+    'saghen/blink.cmp',
+    dependencies = { 'L3MON4D3/LuaSnip' },
+    version = '1.*',
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = {
+      keymap = { preset = 'default' },
+      appearance = {
+        nerd_font_variant = 'normal'
+      },
+      sources = {
+        default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
+        providers = {
+          lazydev = {
+            name = 'LazyDev',
+            module = 'lazydev.integrations.blink',
+            -- make lazydev completions top priority (see `:h blink.cmp`)
+            score_offset = 100,
+          },
+        },
+      },
+      fuzzy = { implementation = 'prefer_rust_with_warning' }
+    },
+    opts_extend = { "sources.default" },
+  },
+  {
+    'folke/lazydev.nvim',
+    ft = 'lua', -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+      },
+    },
+  },
 }

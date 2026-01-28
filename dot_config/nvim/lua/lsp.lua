@@ -1,4 +1,2 @@
-local coq = require 'coq'
-local lsp = require 'lspconfig'
-
-vim.cmd [[COQnow -s]]
+-- VIM enable lsp
+vim.lsp.enable('luals')

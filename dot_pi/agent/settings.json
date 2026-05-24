@@ -1,0 +1,10 @@
+{
+  "lastChangelogVersion": "0.75.5",
+  "defaultProvider": "zai",
+  "defaultModel": "glm-4.7",
+  "defaultThinkingLevel": "minimal",
+  "packages": [
+    "npm:@eko24ive/pi-ask"
+  ],
+  "hideThinkingBlock": false
+}
